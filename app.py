@@ -8,7 +8,7 @@ import numpy as np
 st.set_page_config(page_title="全链路数字图像处理平台", layout="wide", page_icon="🖼️")
 st.markdown("""
 <style>
-    /* 1. 设置网页全屏背景图 */
+    /* 1. 设置全屏背景图（固定在底层） */
     [data-testid="stAppViewContainer"] {
         background-image: url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop");
         background-size: cover;
@@ -16,27 +16,29 @@ st.markdown("""
         background-attachment: fixed;
     }
     
-    /* 2. 顶部导航栏透明化 */
+    /* 2. 顶部导航栏透明化，不遮挡背景 */
     [data-testid="stHeader"] {
         background: rgba(0,0,0,0);
     }
 
-    /* 3. 核心修复：主内容区变成纯白/高透白卡片，强制黑字，绝对看得清 */
+    /* 3. 核心：把中间内容区变成“不透明的相框” */
     .main .block-container {
-        background-color: rgba(255, 255, 255, 0.95) !important; /* 95%不透明的白色 */
-        border-radius: 20px;
+        background-color: #FFFFFF !important; /* 纯白，不透光 */
+        border-radius: 20px; /* 圆角 */
         padding: 3rem !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        margin-top: 2rem;
-        color: #1E293B !important; /* 强制深灰色字体 */
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* 加一层厚重的阴影，让卡片浮起来 */
+        
+        /* 重点：限制卡片宽度，并让四周留出大面积空白露出背景 */
+        max-width: 1200px; /* 限制最大宽度 */
+        margin: 4rem auto !important; /* 上下留出 4rem 空间，左右自动居中 */
     }
 
-    /* 强制段落、列表字体颜色 */
-    .main p, .main span, .main li {
+    /* 强制主内容区字体颜色，防止被暗色模式影响 */
+    .main p, .main span, .main li, .main h2, .main h3, .main h4 {
         color: #1E293B !important; 
     }
 
-    /* 4. 标题美化：居中、渐变色、字体加粗 */
+    /* 4. 标题美化 */
     h1 {
         text-align: center;
         background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6);
@@ -65,7 +67,7 @@ st.markdown("""
         color: white !important;
     }
     
-    /* 6. 图像展示的圆角与阴影 */
+    /* 6. 图像圆角 */
     img {
         border-radius: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
