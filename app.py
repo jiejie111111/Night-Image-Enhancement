@@ -6,22 +6,37 @@ import numpy as np
 # 0. 页面配置与 CSS 美化 (科技感背景+玻璃拟物化)
 # ==========================================
 st.set_page_config(page_title="全链路数字图像处理平台", layout="wide", page_icon="🖼️")
-
 st.markdown("""
 <style>
-    .stApp {
+    /* 1. 设置网页全屏背景图 */
+    [data-testid="stAppViewContainer"] {
         background-image: url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop");
         background-size: cover;
-        background-attachment: fixed;
         background-position: center;
+        background-attachment: fixed;
     }
+    
+    /* 2. 顶部导航栏透明化 */
+    [data-testid="stHeader"] {
+        background: rgba(0,0,0,0);
+    }
+
+    /* 3. 核心修复：主内容区变成纯白/高透白卡片，强制黑字，绝对看得清 */
     .main .block-container {
-        background-color: rgba(255, 255, 255, 0.92);
+        background-color: rgba(255, 255, 255, 0.95) !important; /* 95%不透明的白色 */
         border-radius: 20px;
-        padding: 3rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        padding: 3rem !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         margin-top: 2rem;
+        color: #1E293B !important; /* 强制深灰色字体 */
     }
+
+    /* 强制段落、列表字体颜色 */
+    .main p, .main span, .main li {
+        color: #1E293B !important; 
+    }
+
+    /* 4. 标题美化：居中、渐变色、字体加粗 */
     h1 {
         text-align: center;
         background: -webkit-linear-gradient(45deg, #1E3A8A, #3B82F6);
@@ -30,13 +45,31 @@ st.markdown("""
         font-weight: 800 !important;
         padding-bottom: 20px;
     }
-    .stTabs [data-baseweb="tab-list"] { gap: 20px; justify-content: center; }
-    .stTabs [data-baseweb="tab"] {
-        height: 50px; white-space: pre-wrap; background-color: #f0f2f6;
-        border-radius: 10px 10px 0 0; font-size: 16px; font-weight: bold; padding: 0 20px;
+    
+    /* 5. Tab 标签页美化 */
+    .stTabs [data-baseweb="tab-list"] {
+        gap: 20px;
+        justify-content: center;
     }
-    .stTabs [aria-selected="true"] { background-color: #3B82F6 !important; color: white !important; }
-    img { border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .stTabs [data-baseweb="tab"] {
+        height: 50px;
+        white-space: pre-wrap;
+        background-color: #f0f2f6;
+        border-radius: 10px 10px 0 0;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 0 20px;
+    }
+    .stTabs [aria-selected="true"] {
+        background-color: #3B82F6 !important;
+        color: white !important;
+    }
+    
+    /* 6. 图像展示的圆角与阴影 */
+    img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
 </style>
 """, unsafe_allow_html=True)
 
