@@ -9,12 +9,10 @@ st.set_page_config(page_title="全链路数字图像处理平台", layout="wide"
 st.markdown("""
 <style>
     /* 1. 设置全屏背景图（固定在底层） */
-    [data-testid="stAppViewContainer"] {
-        background-image: url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop");
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-    }
+  [data-testid="stAppViewContainer"] {
+    /* 换成深空蓝到紫色的极简渐变 */
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+}
     
     /* 2. 顶部导航栏透明化，不遮挡背景 */
     [data-testid="stHeader"] {
