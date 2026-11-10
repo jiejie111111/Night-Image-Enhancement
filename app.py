@@ -245,7 +245,7 @@ if uploaded_file is not None:
         decimg_rgb = cv2.cvtColor(decimg, cv2.COLOR_BGR2RGB)
         
         c1, c2 = st.columns(2)
-  c1.image(img_rgb, caption="无损原图", use_column_width=True)
+        c1.image(img_rgb, caption="无损原图", use_column_width=True)
         c2.image(decimg_rgb, caption=f"压缩模拟 (Quality = {quality})", use_column_width=True)
 
     # ---------------------------------------------------------
